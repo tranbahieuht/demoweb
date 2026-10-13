@@ -1,0 +1,102 @@
+[
+  {
+    "name": "home",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "name": "collection",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "name": "residence",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "name": "contact",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "name": "admin",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "name": "home",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "name": "collection",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "name": "residence",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "name": "contact",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "name": "admin",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "name": "home",
+    "width": 430,
+    "overflow": false
+  },
+  {
+    "name": "collection",
+    "width": 430,
+    "overflow": false
+  },
+  {
+    "name": "residence",
+    "width": 430,
+    "overflow": false
+  },
+  {
+    "name": "contact",
+    "width": 430,
+    "overflow": false
+  },
+  {
+    "name": "admin",
+    "width": 430,
+    "overflow": false
+  },
+  {
+    "name": "home",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "collection",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "residence",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "contact",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "name": "admin",
+    "width": 390,
+    "overflow": false
+  }
+]
