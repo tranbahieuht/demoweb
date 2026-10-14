@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { ArrowUpRight, Instagram, Phone, Mail, Clock3 } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, Clock3 } from "lucide-react";
 import { demoCompany } from "@/data/properties";
 import { InquiryForm } from "./inquiry-form";
 import { MapPlaceholder } from "./map-placeholder";
@@ -48,16 +48,6 @@ export function ContactPage() {
               <Clock3 size={14} />
               {t("hours")}
             </p>
-            <a
-              href="https://www.instagram.com/explore/tags/architecture/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-            >
-              <Instagram size={16} />
-              Instagram
-              <ArrowUpRight size={16} />
-            </a>
             <p className="demo-note">{t("officeDemo")}</p>
           </div>
         </div>

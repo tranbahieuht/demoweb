@@ -30,7 +30,10 @@ export function InquiryForm({
           v.replace(/\D/g, "").length <= 15,
         t("invalidPhone"),
       ),
-    email: z.email(t("invalidEmail")),
+    email: z
+      .string()
+      .trim()
+      .pipe(z.email(t("invalidEmail"))),
     method: z.enum(["email", "phone"]),
     message: z
       .string()
@@ -86,6 +89,7 @@ export function InquiryForm({
               maxLength={field === "name" ? 100 : field === "email" ? 254 : 30}
               aria-label={t(field)}
               aria-required="true"
+              required
               autoComplete={
                 field === "name" ? "name" : field === "phone" ? "tel" : "email"
               }
@@ -139,6 +143,7 @@ export function InquiryForm({
           maxLength={3000}
           aria-label={t("message")}
           aria-required="true"
+          required
           rows={4}
           {...register("message")}
           aria-invalid={!!errors.message}

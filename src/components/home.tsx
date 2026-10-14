@@ -171,13 +171,17 @@ export function Home() {
       </section>
       <div className="hero-after">
         <span>{t("brandStrap")}</span>
-        <a href="#philosophy">
+        <a href="#company">
           {t("scroll")}
           <MoveDown size={15} />
         </a>
         <span>{t("established")}</span>
       </div>
-      <section id="philosophy" className="intro section-pad">
+      <section
+        id="company"
+        className="intro section-pad"
+        aria-label={t("introTitle")}
+      >
         <Reveal>
           <div className="eyebrow">{t("introKicker")}</div>
           <TextReveal className="intro-heading" text={t("introTitle")} />
@@ -222,7 +226,10 @@ export function Home() {
         </Reveal>
         <p className="demo-note stat-note">{t("demoStats")}</p>
       </section>
-      <section className="categories section-pad">
+      <section
+        className="categories section-pad"
+        aria-label={t("categoryTitle")}
+      >
         <Reveal className="section-heading">
           <div className="eyebrow">{t("categoryKicker")}</div>
           <TextReveal text={t("categoryTitle")} />
@@ -272,7 +279,7 @@ export function Home() {
           </div>
         </div>
       </section>
-      <section className="featured section-pad">
+      <section className="featured section-pad" aria-label={t("featuredTitle")}>
         <Reveal className="featured-heading">
           <div>
             <div className="eyebrow">{t("featuredKicker")}</div>
@@ -353,7 +360,11 @@ export function Home() {
           </div>
         </SignatureMotion>
       )}
-      <section id="people" className="team section-pad">
+      <section
+        id="team"
+        className="team section-pad"
+        aria-label={t("teamTitle")}
+      >
         <Reveal className="team-heading">
           <div className="eyebrow">{t("teamKicker")}</div>
           <TextReveal text={t("teamTitle")} />
@@ -390,7 +401,11 @@ export function Home() {
         </div>
         <p className="demo-note">{t("demoReviews")}</p>
       </section>
-      <section className="testimonials section-pad">
+      <section
+        id="testimonials"
+        className="testimonials section-pad"
+        aria-label={t("reviewsKicker")}
+      >
         <div className="eyebrow">{t("reviewsKicker")}</div>
         <div className="review-stars" aria-label="5 / 5">
           {[0, 1, 2, 3, 4].map((i) => (

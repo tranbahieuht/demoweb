@@ -40,7 +40,7 @@ Browser tests use Playwright and the local dev server. Install its Chromium brow
 
 The suite covers desktop Chromium and touch-emulated Pixel 7 / iPad Mini layouts: all five languages across every public page type, filters and sorting, combined price bounds and reload persistence, locale-preserved navigation, form validation and browser persistence, storage failure handling, gallery controls and swipes, image loading, and GSAP pin cleanup. It also verifies navigation scope and 404 responses for retired routes.
 
-Final typography refinement screenshots for all four page types at 1440, 768, 430, and 390-pixel widths are in `docs/visual-review/balanced/`. Regenerate them against a running server with `TEST_BASE_URL` and `node scripts/visual-review.mjs balanced`. The heading scale now caps desktop hero/H1/H2/H3 at 68/60/46/32px and mobile at 48/40/34/24px, while body and interface text retain their readable sizes. See `docs/verification.md` for checks and demo limitations.
+Final typography refinement screenshots for all four page types at 1440, 768, 430, and 390-pixel widths are in `docs/visual-review/scope/`. Regenerate them against a running server with `TEST_BASE_URL` and `node scripts/visual-review.mjs scope`. The heading scale now caps desktop hero/H1/H2/H3 at 68/60/46/32px and mobile at 48/40/34/24px, while body and interface text retain their readable sizes. See `docs/verification.md` for checks and demo limitations.
 
 To test a production server on another port, set `TEST_BASE_URL` before running the suite. Run build and TypeScript checks sequentially because Next.js regenerates route types during the build.
 

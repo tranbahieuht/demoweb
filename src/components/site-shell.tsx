@@ -6,13 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import {
-  ArrowUpRight,
-  Menu,
-  Instagram,
-  ArrowRight,
-  Globe2,
-} from "lucide-react";
+import { ArrowUpRight, Menu, ArrowRight, Globe2 } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { demoCompany } from "@/data/properties";
@@ -223,16 +217,6 @@ export function Footer() {
           </p>
           <a href={`mailto:${demoCompany.email}`}>{demoCompany.email}</a>
           <a href="tel:+842800002026">{demoCompany.phone}</a>
-          <a
-            href="https://www.instagram.com/explore/tags/architecture/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Architecture on Instagram"
-          >
-            <Instagram size={17} />
-            <span>Instagram</span>
-            <ArrowUpRight size={12} />
-          </a>
         </div>
       </div>
       <div className="footer-bottom">

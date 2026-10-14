@@ -40,7 +40,7 @@ export function PropertyDetail({ slug }: { slug: string }) {
     property.status === "available" ? "viewingTitle" : "availabilityInquiry",
   );
   return (
-    <div className="detail-page">
+    <article className="detail-page" aria-label={property.name[locale]}>
       <div className="detail-breadcrumb">
         <Link href="/properties">
           <ArrowLeft size={15} />
@@ -100,17 +100,19 @@ export function PropertyDetail({ slug }: { slug: string }) {
                 </div>
               </div>
             </Reveal>
-            <Reveal className="detail-section">
-              <TextReveal text={t("amenities")} />
-              <ul className="amenity-list">
-                {property.amenities.map((amenity) => (
-                  <li key={amenity}>
-                    <Check size={17} />
-                    {t.has(amenity) ? t(amenity) : amenity}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+            {property.amenities.length > 0 && (
+              <Reveal className="detail-section">
+                <TextReveal text={t("amenities")} />
+                <ul className="amenity-list">
+                  {property.amenities.map((amenity) => (
+                    <li key={amenity}>
+                      <Check size={17} />
+                      {t.has(amenity) ? t(amenity) : amenity}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
             <Reveal className="detail-section">
               <TextReveal text={t("terms")} />
               <p className="body-copy">{t("termsBody")}</p>
@@ -151,6 +153,6 @@ export function PropertyDetail({ slug }: { slug: string }) {
           </div>
         </section>
       )}
-    </div>
+    </article>
   );
 }

@@ -217,11 +217,11 @@ const lines: Record<string, [string, string, string, string, string]> = {
     "搜索房源",
   ],
   introKicker: [
-    "01 / THE MAISON WAY",
-    "01 / PHONG CÁCH MAISON",
-    "01 / ФИЛОСОФИЯ MAISON",
-    "01 / 메종의 철학",
-    "01 / MAISON 理念",
+    "01 / ABOUT MAISON",
+    "01 / VỀ MAISON",
+    "01 / О MAISON",
+    "01 / 메종 소개",
+    "01 / 关于 MAISON",
   ],
   introTitle: [
     "More than a home.\nA sense of belonging.",
@@ -231,11 +231,11 @@ const lines: Record<string, [string, string, string, string, string]> = {
     "不止是家。\n更是归属。",
   ],
   introBody: [
-    "We believe the right home changes everything. The light in the morning. The quiet at the end of a day. The space to make life your own. We find those places, so you can find your place.",
-    "Chúng tôi tin rằng ngôi nhà phù hợp thay đổi mọi thứ. Ánh sáng ban mai, sự yên bình cuối ngày, không gian để sống theo cách riêng. Chúng tôi tìm những nơi ấy, để bạn tìm thấy chốn thuộc về.",
-    "Мы верим, что подходящий дом меняет всё. Утренний свет. Тишина в конце дня. Место, где можно быть собой. Мы находим такие дома для вас.",
-    "좋은 집은 일상을 바꿉니다. 아침의 빛, 하루 끝의 고요함, 나답게 살아갈 공간. 당신만의 안식처를 찾아드립니다.",
-    "晨光、一天结束时的宁静、自在生活的空间。我们相信合适的家能改变一切。我们寻找这样的地方，让您找到归属。",
+    "Maison brings together considered rental homes in Ho Chi Minh City, Hanoi, Da Nang, and Hoi An. Our local team helps you explore neighborhoods, arrange private viewings, and find a home that fits your everyday life, with personal guidance from your first inquiry to move-in.",
+    "Maison tuyển chọn những ngôi nhà cho thuê tại Thành phố Hồ Chí Minh, Hà Nội, Đà Nẵng và Hội An. Đội ngũ am hiểu địa phương giúp bạn khám phá khu vực, sắp xếp lịch xem nhà riêng và tìm không gian phù hợp với cuộc sống, đồng hành từ lần liên hệ đầu tiên đến khi nhận nhà.",
+    "Maison подбирает дома и квартиры для аренды в Хошимине, Ханое, Дананге и Хойане. Наша местная команда поможет изучить районы, организовать индивидуальные просмотры и найти жильё для вашего образа жизни, сопровождая вас от первого обращения до переезда.",
+    "메종은 호찌민, 하노이, 다낭, 호이안의 엄선된 임대 주택을 소개합니다. 지역을 잘 아는 팀이 동네 탐색과 개별 방문 일정을 돕고, 첫 문의부터 입주까지 일상에 맞는 집을 찾도록 세심하게 안내합니다.",
+    "Maison 精选胡志明市、河内、岘港和会安的租赁住宅。我们的本地团队协助您了解社区、安排专属看房，找到契合日常生活的家，从首次咨询到入住全程提供贴心指引。",
   ],
   aboutLink: [
     "A more personal approach",

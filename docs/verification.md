@@ -1,15 +1,17 @@
-﻿# Olive typography refinement verification
+# Public scope and presentation verification
 
 Verified on 15 October 2026 (Vietnam time), continuing the existing Maison project.
 
 - ESLint, TypeScript, and Next.js production build: passed.
 - Production browser suite: 17 passed across desktop Chromium, Pixel 7, and iPad Mini emulation.
-- Public routes: home, property listing, property detail, and contact, with five locale variants. Admin, philosophy, people, journal, and blog URLs return 404 in production. Existing admin tools are available only in explicitly enabled development mode (`MAISON_DEMO_ADMIN=true`); they have no public navigation link.
+- Public routes: home, property listing, property detail, and contact, with five locale variants. Admin, philosophy, people, journal, blog, news, and separate team URLs return 404 in production. Existing admin tools are available only in explicitly enabled development mode (`MAISON_DEMO_ADMIN=true`); they have no public navigation link.
 - Every public page type was checked in English, Vietnamese, Russian, Korean, and Chinese at desktop and mobile widths. Localized form notices are checked explicitly.
-- Screenshots cover all four page types at 1440, 768, 430, and 390 pixels. All 16 page/width combinations have no horizontal overflow. See `visual-review/balanced/` for screenshots and `report.json`.
+- Screenshots cover all four page types at 1440, 768, 430, and 390 pixels. All 16 page/width combinations have no horizontal overflow. See `visual-review/scope/` for screenshots and `report.json`.
 - The development admin smoke check passed: inquiry status changes persist across reloads, property edits appear on the detail page, and property creation/deletion work.
 
 The review checked shared heading scales, compact sans-serif property titles, prices, readable body text, form labels and inputs, navigation, metadata, captions, and footer text. Desktop hero/H1/H2/H3 sizes now cap at 68/60/46/32px; mobile caps are 48/40/34/24px, with a separate tablet scale. Display tracking is less tight. Body text remains 16px, large copy 18px, interface text 14px, and metadata 13px. The cream/ivory/sand backgrounds, photography, serif/sans direction, multilingual switching, and working motion remain. The previous scope cleanup remains intact, including the focused navigation and homepage sections. The desktop signature animation remains intact.
+
+The latest scope audit also confirmed every required homepage section, a property article with specifications and amenities, and four required customer fields on both forms in all five languages. The company introduction now names the rental service and its locations. Homepage anchors use company/team/testimonials section names; no separate pages or navigation items were added. Generic architecture Instagram links were removed from contact areas. Empty amenities sections are hidden, and submitted email addresses are trimmed before validation.
 
 Contrast ratios for text on cream / ivory / sand respectively:
 

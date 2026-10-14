@@ -24,6 +24,8 @@ test("public navigation stays within scope and retired routes return 404", async
     "/en/people",
     "/en/journal",
     "/en/blog",
+    "/en/news",
+    "/en/team",
   ]) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(404);
@@ -51,6 +53,7 @@ test("all four page types fit desktop and mobile in every language", async ({
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         await expect(page.locator("html")).toHaveAttribute("lang", locale);
         if (path === "/contact" || path.includes("the-palm-house")) {
+          await expect(page.locator(".inquiry-form [required]")).toHaveCount(4);
           const notices: Record<string, string> = {
             en: "Demo mode.",
             vi: "Chế độ demo.",
@@ -61,6 +64,34 @@ test("all four page types fit desktop and mobile in every language", async ({
           await expect(page.locator(".form-demo-note")).toContainText(
             notices[locale],
           );
+        }
+        if (path === "") {
+          for (const section of [
+            ".intro",
+            ".categories",
+            ".featured",
+            ".team",
+            ".testimonials",
+          ]) {
+            await expect(page.locator(section)).toHaveAttribute(
+              "aria-label",
+              /\S/,
+            );
+          }
+          await expect(page.locator(".team .team-person")).toHaveCount(3);
+          await expect(
+            page.locator(".testimonials blockquote"),
+          ).not.toBeEmpty();
+        }
+        if (path.includes("the-palm-house")) {
+          await expect(page.locator("article.detail-page")).toHaveAttribute(
+            "aria-label",
+            /\S/,
+          );
+          await expect(page.locator(".detail-specs > div")).toHaveCount(3);
+          await expect(
+            page.locator(".amenity-list li").first(),
+          ).not.toBeEmpty();
         }
         const dimensions = await page.evaluate(() => {
           const heading = document.querySelector("h1")!;
@@ -119,7 +150,7 @@ test("transparent navigation, masked headings and image reveals work during norm
     "color",
     "rgb(255, 252, 246)",
   );
-  await page.locator("#philosophy").scrollIntoViewIfNeeded();
+  await page.locator("#company").scrollIntoViewIfNeeded();
   await expect(page.locator(".site-header")).toHaveClass(/is-scrolled/);
   await expect
     .poll(() =>
