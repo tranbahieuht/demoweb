@@ -14,7 +14,6 @@ import {
   Globe2,
 } from "lucide-react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import NextLink from "next/link";
 import type { Locale } from "@/i18n/routing";
 import { demoCompany } from "@/data/properties";
 import { Dialog } from "./ui/dialog";
@@ -83,9 +82,9 @@ export function Header() {
     serverScrollSnapshot,
   );
   const nav = [
-    { label: "collection", href: "/properties" },
-    { label: "philosophy", href: "/#philosophy" },
-    { label: "journal", href: "/#people" },
+    { label: "home", href: "/" },
+    { label: "propertiesNav", href: "/properties" },
+    { label: "contactNav", href: "/contact" },
   ];
   return (
     <header
@@ -98,7 +97,14 @@ export function Header() {
         {nav.map((n) => (
           <Link
             className={
-              pathname.startsWith(n.href) && n.href !== "/" ? "active" : ""
+              (n.href === "/" ? pathname === "/" : pathname.startsWith(n.href))
+                ? "active"
+                : ""
+            }
+            aria-current={
+              (n.href === "/" ? pathname === "/" : pathname.startsWith(n.href))
+                ? "page"
+                : undefined
             }
             key={n.label}
             href={n.href}
@@ -131,7 +137,7 @@ export function Header() {
         closeLabel={t("close")}
       >
         <nav>
-          {[...nav, { label: "contact", href: "/contact" }].map((n, i) => (
+          {nav.map((n, i) => (
             <Link
               href={n.href}
               key={n.label}
@@ -196,14 +202,9 @@ export function Footer() {
         </div>
         <div>
           <h3>{t("exploreLabel")}</h3>
-          <Link href="/properties">{t("collection")}</Link>
-          <Link href="/#philosophy">{t("philosophy")}</Link>
-          <Link href="/#people">{t("journal")}</Link>
-          <Link href="/contact">{t("contact")}</Link>
-          <NextLink href="/admin">
-            {t("adminDemo")}
-            <ArrowUpRight size={12} />
-          </NextLink>
+          <Link href="/">{t("home")}</Link>
+          <Link href="/properties">{t("propertiesNav")}</Link>
+          <Link href="/contact">{t("contactNav")}</Link>
         </div>
         <div>
           <h3>{t("collection")}</h3>

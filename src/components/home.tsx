@@ -353,33 +353,6 @@ export function Home() {
           </div>
         </SignatureMotion>
       )}
-      <section className="care section-pad">
-        <Reveal className="care-title">
-          <div className="eyebrow">{t("whyKicker")}</div>
-          <TextReveal text={t("whyTitle")} />
-          <div className="care-photo">
-            <ImageReveal className="image-fill">
-              <Photo
-                src="/images/garden.jpg"
-                alt={t("gardenAmenity")}
-                sizes="40vw"
-              />
-            </ImageReveal>
-          </div>
-        </Reveal>
-        <div className="care-list">
-          {[1, 2, 3, 4].map((n) => (
-            <Reveal key={n} className="care-item">
-              <span>0{n}</span>
-              <div>
-                <h3>{t(`care${n}`)}</h3>
-                <p>{t(`care${n}Body`)}</p>
-              </div>
-              <ArrowUpRight size={23} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
       <section id="people" className="team section-pad">
         <Reveal className="team-heading">
           <div className="eyebrow">{t("teamKicker")}</div>

@@ -29,11 +29,11 @@ test("390px and 430px modal entrances stay inside the viewport with motion enabl
     await page.getByRole("button", { name: "Open navigation" }).tap();
     await expect(page.getByRole("dialog")).toHaveCSS(
       "background-color",
-      "rgb(41, 37, 31)",
+      "rgb(68, 75, 60)",
     );
     await page
       .getByRole("dialog")
-      .getByRole("link", { name: /The collection/ })
+      .getByRole("link", { name: /Properties/ })
       .tap();
     await expect(page).toHaveURL(/\/en\/properties$/);
     await expect(page.getByRole("dialog")).not.toBeVisible();
@@ -86,7 +86,7 @@ test("touch layouts in all five languages and inquiry validation", async ({
   }
   expect(consoleErrors).toEqual([]);
 });
-test("touch filtering, language switching, gallery swipe, and mobile admin", async ({
+test("touch filtering, language switching, gallery swipe, and contact persistence", async ({
   page,
 }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -171,27 +171,20 @@ test("touch filtering, language switching, gallery swipe, and mobile admin", asy
       exact: true,
     }),
   ).toBeVisible();
-  await page.goto("/admin");
-  await page.getByRole("button", { name: /^Inquiries/ }).tap();
-  await expect(
-    page.getByLabel("Status of inquiry from Touch Visitor"),
-  ).toHaveValue("new");
-  await page
-    .getByLabel("Status of inquiry from Touch Visitor")
-    .selectOption("resolved");
-  await page.getByRole("button", { name: "Properties", exact: true }).tap();
-  await page
-    .getByRole("button", { name: "Edit The Palm House", exact: true })
-    .tap();
-  await page.getByLabel("Monthly rent · VND").fill("97000000");
-  await page.getByRole("button", { name: "Save property" }).tap();
-  await expect(page.getByRole("dialog")).not.toBeVisible();
+  const inquiries = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("maison-demo-v1")!).inquiries,
+  );
+  expect(inquiries).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({ name: "Touch Visitor", status: "new" }),
+    ]),
+  );
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `test-results/${testInfo.project.name}-admin.png`,
+    path: `test-results/${testInfo.project.name}-contact.png`,
   });
 });

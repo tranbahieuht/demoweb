@@ -61,11 +61,11 @@ export function PropertyListing() {
   const [drawer, setDrawer] = useState(false);
   const [view, setView] = useState("grid");
   const update = (key: keyof Filters, value: string) => {
-    const next = { ...filters, [key]: value };
-    const query = new URLSearchParams();
-    Object.entries(next).forEach(([k, v]) => {
-      if (v && v !== defaults[k as keyof Filters]) query.set(k, v);
-    });
+    // Read the latest URL so consecutive edits cannot overwrite a filter before
+    // useSearchParams has delivered its next render.
+    const query = new URLSearchParams(window.location.search);
+    if (value && value !== defaults[key]) query.set(key, value);
+    else query.delete(key);
     window.history.replaceState(
       null,
       "",

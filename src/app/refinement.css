@@ -16,8 +16,8 @@
   --section-space: clamp(64px, 7vw, 112px);
   --header-height: 92px;
   --ease-maison: cubic-bezier(0.22, 1, 0.36, 1);
-  --text-soft: #625d52;
-  --line-soft: rgba(41, 37, 31, 0.12);
+  --text-soft: #5f6650;
+  --line-soft: rgba(95, 102, 80, 0.14);
 }
 h1,
 h2 {
@@ -91,7 +91,7 @@ p {
   box-shadow: inset 0 0 0 0 var(--gold);
 }
 .button.dark:hover {
-  background: #454137;
+  background: #383f31;
   box-shadow: inset 0 -3px 0 0 var(--gold);
 }
 .button svg,
@@ -227,9 +227,9 @@ p {
 }
 .hero-shade {
   background:
-    linear-gradient(180deg, #1820198c 0%, #18201915 42%, transparent 58%),
-    linear-gradient(90deg, #171e1d45, transparent 78%),
-    linear-gradient(0deg, #171e1d99, transparent 72%);
+    linear-gradient(180deg, #232c207a, transparent 60%),
+    linear-gradient(90deg, #232c20ad, #232c2059 55%, #232c201a),
+    linear-gradient(0deg, #232c2050, transparent 70%);
 }
 .hero-topline {
   top: calc(var(--header-height) + var(--space-10));
@@ -828,7 +828,7 @@ p {
   padding: var(--space-3) 0;
 }
 .field:focus-within > span:first-child {
-  color: #8c7450;
+  color: var(--ink);
 }
 .field input:focus,
 .field textarea:focus {
@@ -1154,7 +1154,7 @@ p {
   transform: translate(3px, -3px);
 }
 .contact-shortcuts a:hover {
-  color: #8c7450;
+  color: var(--ink);
 }
 .office-hours {
   display: flex;
@@ -2505,5 +2505,536 @@ p {
     animation-delay: 0s !important;
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Public typography system. Keep the established compositions and motion, with
+   one responsive scale shared by every page and language. Soft olive is reserved
+   for decoration; small text uses the darker, contrast-safe olive token. */
+:root {
+  --text-primary: #5f6650;
+  --olive-soft: #777d68;
+  --olive-light: #9a9f8d;
+  --type-display: clamp(60px, 5.4vw, 78px);
+  --type-h1: clamp(52px, 4.7vw, 68px);
+  --type-h2: clamp(40px, 3.4vw, 50px);
+  --type-h3: clamp(28px, 2.2vw, 34px);
+  --type-body: 16px;
+  --type-large: 18px;
+  --type-ui: 14px;
+  --type-meta: 13px;
+}
+body {
+  color: var(--text-primary);
+  font-size: var(--type-body);
+  line-height: 1.7;
+}
+h1,
+h2,
+h3 {
+  color: var(--ink);
+  letter-spacing: -0.025em;
+}
+h1 {
+  font-size: var(--type-h1);
+  line-height: 1.12;
+}
+h2 {
+  font-size: var(--type-h2);
+  line-height: 1.16;
+}
+h3 {
+  font-size: var(--type-h3);
+  line-height: 1.25;
+}
+p {
+  text-wrap: pretty;
+}
+.site-header,
+.property-title-row,
+.property-price,
+.detail-rent strong {
+  color: var(--ink);
+}
+.hero-copy h1,
+:lang(ko) .hero-copy h1,
+:lang(ru) .hero-copy h1 {
+  font-size: var(--type-display);
+  line-height: 1.1;
+}
+.listing-heading h1,
+.contact-heading h1,
+.detail-title h1,
+:lang(ko) .listing-heading h1,
+:lang(ko) .contact-heading h1,
+:lang(ko) .detail-title h1 {
+  font-size: var(--type-h1);
+}
+.intro-heading,
+.section-heading h2,
+.featured-heading h2,
+.team-heading h2,
+.signature-copy h2,
+.contact-invitation h2,
+.related-properties > h2,
+:lang(ko) .intro-heading,
+:lang(ko) .team-heading h2 {
+  font-size: var(--type-h2);
+  line-height: 1.16;
+}
+.detail-columns h2,
+.detail-inquiry h2,
+.contact-form-panel h2,
+.office-details h2,
+.form-success h3 {
+  font-size: var(--type-h3);
+  line-height: 1.25;
+}
+.category-choice h3 {
+  font-size: var(--type-h3);
+}
+.hero-copy h1,
+.category-choice h3,
+.signature-copy h2,
+.contact-invitation h2 {
+  color: inherit;
+}
+.hero-copy p,
+.listing-heading > p,
+.contact-lead p {
+  font-size: var(--type-large);
+  line-height: 1.75;
+}
+.hero-copy p {
+  max-width: 40ch;
+  color: var(--paper);
+}
+.body-copy,
+.intro-side .body-copy,
+.detail-overview .body-copy,
+.detail-section .body-copy,
+.team-heading p,
+.team-person p,
+.signature-copy > p,
+.contact-invitation-main p,
+.form-introduction,
+.detail-inquiry > p,
+.office-details > p,
+.contact-shortcuts a,
+.amenity-list,
+.form-success p,
+.empty-state p,
+.menu-bottom > p {
+  font-size: var(--type-body);
+  line-height: 1.8;
+}
+.team-person h3,
+.property-title-row h3,
+.property-grid .property-title-row h3 {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+.property-title-row {
+  gap: 16px;
+  align-items: start;
+}
+.property-title-row > svg {
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.property-price {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.detail-rent strong,
+.detail-specs strong {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.025em;
+}
+.detail-specs strong {
+  font-size: 24px;
+}
+.statistics strong {
+  font-size: var(--type-h2);
+}
+.eyebrow,
+.small,
+.demo-note,
+.stat-note,
+.team > .demo-note,
+.hero-topline,
+.hero-property-note,
+.hero-property-note p,
+.hero-after,
+.hero-after > a,
+.image-caption,
+.statistics > div > span,
+.category-number,
+.category-choice .category-number,
+.category-choice p,
+.status-tag,
+.property-type-label,
+.property-location,
+.property-meta,
+.property-grid .property-meta,
+.property-price > span,
+.card-reference,
+.card-gallery-controls,
+.featured-bottom > .small,
+.team-role,
+.review-person span,
+.footer-brand .demo-note,
+.footer-bottom,
+.footer-bottom p,
+.field > span:first-child,
+.filter-dialog .field > span:first-child,
+.field-error,
+.form-demo-note,
+.filter-chip,
+.detail-breadcrumb,
+.detail-specs span,
+.detail-rent > span:not(.status-tag),
+.reference-field input,
+.map-caption > span,
+.contact-lead > span,
+.office-details > .demo-note,
+.gallery-controls,
+.gallery-demo,
+.gallery-position,
+.gallery-footer,
+.signature-bottom,
+.menu-dialog nav a span,
+.menu-bottom .demo-note {
+  font-size: var(--type-meta);
+  line-height: 1.65;
+}
+.eyebrow {
+  letter-spacing: 0.12em;
+}
+.image-caption {
+  letter-spacing: 0.04em;
+}
+.button,
+.text-link,
+.intro-side .text-link,
+.featured-heading .text-link,
+.desktop-nav,
+.nav-cta,
+.hero-explore,
+.hero-search .button,
+.hero-search .select-trigger,
+.language-select .select-trigger,
+.select-trigger,
+.select-option,
+.reset-filters,
+.mobile-filter-button,
+.results-bar > p,
+.results-bar .select-trigger,
+.detail-rent .button,
+.footer-main h3,
+.footer-main > div:not(:first-child) > a,
+.footer-address p,
+.footer-brand > p,
+.map-caption strong,
+.map-action,
+.review-person,
+.hero-search label > span {
+  font-size: var(--type-ui);
+  line-height: 1.65;
+}
+.desktop-nav,
+.nav-cta,
+.menu-dialog nav a {
+  font-family: var(--font-sans);
+}
+.desktop-nav {
+  gap: clamp(20px, 2vw, 32px);
+}
+.header-actions {
+  gap: 20px;
+}
+.nav-cta {
+  gap: 20px;
+}
+.wordmark-sub {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.footer-brand .wordmark {
+  font-size: 56px;
+}
+.field input,
+.field textarea,
+.field select,
+.keyword-search input {
+  font-size: 16px;
+  line-height: 1.65;
+}
+.field input::placeholder,
+.keyword-search input::placeholder,
+.field textarea::placeholder {
+  color: var(--olive);
+  opacity: 1;
+}
+.field > span:first-child,
+.property-location,
+.property-meta,
+.card-reference,
+.team-role,
+.image-caption {
+  color: var(--olive);
+}
+.card-reference {
+  opacity: 1;
+}
+.property-meta {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+.hero-search label > span {
+  font-size: var(--type-meta);
+}
+.hero-search {
+  height: auto;
+  min-height: 104px;
+}
+.hero-topline {
+  letter-spacing: 0.08em;
+}
+.hero-topline > span:last-child {
+  font-size: 12px;
+}
+.hero-property-note {
+  max-width: 28ch;
+}
+.category-choice p {
+  max-width: 27ch;
+}
+.testimonials blockquote {
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1.4;
+  font-style: normal;
+}
+.review-stars {
+  color: var(--olive);
+}
+.contact-invitation {
+  background: var(--ink);
+  color: var(--paper);
+}
+.contact-invitation-main p,
+.contact-invitation .eyebrow {
+  color: var(--paper);
+}
+.detail-inquiry {
+  border-top-color: var(--olive-light);
+}
+.menu-dialog nav a,
+:lang(ko) .menu-dialog nav a,
+:lang(zh) .menu-dialog nav a,
+:lang(ru) .menu-dialog nav a {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.menu-dialog .dialog-title {
+  color: var(--paper);
+}
+.menu-dialog .dialog-close {
+  color: var(--paper);
+}
+:lang(ko) h1,
+:lang(ko) h2,
+:lang(ko) h3,
+:lang(zh) h1,
+:lang(zh) h2,
+:lang(zh) h3 {
+  letter-spacing: -0.02em;
+}
+:lang(ko) .property-title-row h3,
+:lang(zh) .property-title-row h3,
+:lang(ko) .team-person h3,
+:lang(zh) .team-person h3 {
+  font-family: var(--font-sans);
+}
+@media (max-width: 1100px) {
+  .detail-title {
+    flex-wrap: wrap;
+  }
+  .detail-rent {
+    align-items: start;
+  }
+}
+@media (max-width: 800px) {
+  :root {
+    --type-display: 60px;
+    --type-h1: 52px;
+    --type-h2: 40px;
+    --type-h3: 28px;
+  }
+  .hero {
+    min-height: 880px;
+  }
+  .hero-copy {
+    top: 22%;
+  }
+  .hero-copy p {
+    font-size: 17px;
+  }
+  .hero-search {
+    gap: 20px;
+  }
+  .hero-search .select-trigger {
+    min-height: 36px;
+  }
+  .hero-property-note {
+    display: none;
+  }
+  .contact-form-panel {
+    min-width: 0;
+  }
+  .results-bar {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 560px) {
+  :root {
+    --type-display: clamp(42px, 11.8vw, 50px);
+    --type-h1: clamp(36px, 10vw, 42px);
+    --type-h2: clamp(30px, 8.4vw, 36px);
+    --type-h3: 26px;
+    --type-large: 16px;
+    --type-body: 16px;
+  }
+  .hero {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 168px 7% 32px;
+  }
+  .hero-topline {
+    top: 108px;
+    left: 7%;
+    right: 7%;
+  }
+  .hero-topline > span:last-child {
+    display: none;
+  }
+  .hero-copy {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+  .hero-copy p {
+    font-size: var(--type-body);
+    max-width: 34ch;
+    margin-top: 20px;
+  }
+  .hero-explore {
+    margin-top: 24px;
+  }
+  .hero-search {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-top: 40px;
+    padding: 20px 16px;
+    gap: 20px 12px;
+  }
+  .hero-search .select-trigger {
+    font-size: 13px;
+  }
+  .hero-search .button {
+    font-size: 14px;
+    padding: 12px;
+    height: auto;
+    min-height: 48px;
+  }
+  .hero-after {
+    gap: 16px;
+  }
+  .hero-after > span:first-child {
+    max-width: 20ch;
+  }
+  .property-title-row h3,
+  .property-grid .property-title-row h3,
+  .team-person h3 {
+    font-size: 22px;
+  }
+  .property-price {
+    font-size: 18px;
+  }
+  .detail-title {
+    gap: 28px;
+  }
+  .detail-rent strong {
+    font-size: 26px;
+  }
+  .detail-inquiry {
+    padding: 28px 20px;
+  }
+  .testimonials blockquote {
+    font-size: 28px;
+    min-height: 0;
+  }
+  .testimonials {
+    padding-inline: var(--gutter);
+  }
+  .category-choice {
+    padding-right: 76px;
+  }
+  .category-choice p {
+    max-width: 24ch;
+  }
+  .category-choice button {
+    grid-template-columns: 22px 1fr;
+  }
+  .category-arrow {
+    top: 56px;
+  }
+  .property-meta,
+  .property-grid .property-meta {
+    gap: 12px;
+  }
+  .results-bar > div {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .results-bar .select-trigger {
+    min-width: 0;
+  }
+  .footer-main {
+    gap: 32px;
+  }
+  .footer-brand .wordmark {
+    font-size: 48px;
+  }
+  .footer-bottom {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .language-select .select-trigger {
+    width: 52px;
+  }
+  .language-select.full .select-trigger {
+    width: 140px;
+  }
+  .menu-dialog .dialog-title {
+    margin-bottom: 24px;
+  }
+  .menu-dialog nav a {
+    padding-block: 20px;
+  }
+  .menu-bottom {
+    gap: 16px;
+    padding-top: 24px;
   }
 }

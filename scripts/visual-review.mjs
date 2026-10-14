@@ -18,7 +18,6 @@ for (const width of [1440, 768, 430, 390]) {
     ["collection", "/en/properties"],
     ["residence", "/en/properties/the-palm-house"],
     ["contact", "/en/contact"],
-    ["admin", "/admin"],
   ]) {
     await page.goto(`${base}${path}`);
     await page.evaluate(() => document.fonts.ready);

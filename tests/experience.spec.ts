@@ -123,7 +123,7 @@ test("filters, sort, empty state, reset, and preserved locale path", async ({
   await expect(page.locator(".property-card")).toHaveCount(1);
   await page
     .locator(".site-header")
-    .getByRole("link", { name: "The collection", exact: true })
+    .getByRole("link", { name: "Properties", exact: true })
     .click();
   await expect(page.locator(".property-card")).toHaveCount(12);
   await page.getByLabel("Search by name or neighborhood").fill("palm");
@@ -142,97 +142,39 @@ test("filters, sort, empty state, reset, and preserved locale path", async ({
     "Biệt thự Cọ",
   );
 });
-test("validated property inquiry persists and can be managed in admin", async ({
+test("validated property and contact inquiries persist with their reference", async ({
   page,
 }) => {
-  const errors: string[] = [];
-  page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/en/properties/the-palm-house");
   await page
     .getByRole("button", { name: "Send your inquiry", exact: true })
     .click();
-  await expect(
-    page.getByText("Please enter at least 2 characters."),
-  ).toBeVisible();
+  await expect(page.locator(".field-error")).toHaveCount(4);
   await fillInquiry(page);
-  await page.goto("/admin");
-  await page.getByRole("button", { name: /^Inquiries/ }).click();
-  await expect(
-    page.getByRole("cell", { name: /Demo Visitor visitor/ }),
-  ).toBeVisible();
-  await page
-    .getByLabel("Status of inquiry from Demo Visitor")
-    .selectOption("contacted");
   await page.reload();
-  await page.getByRole("button", { name: /^Inquiries/ }).click();
-  await expect(
-    page.getByLabel("Status of inquiry from Demo Visitor"),
-  ).toHaveValue("contacted");
-  await page
-    .getByRole("button", { name: "View inquiry from Demo Visitor" })
-    .click();
-  await expect(page.getByRole("dialog")).toContainText("MSN-001");
-  await page.keyboard.press("Escape");
   await page.goto("/en/contact");
-  await page.reload();
   await fillInquiry(page, "Second Visitor");
-  await page.goto("/admin");
-  await page.getByRole("button", { name: /^Inquiries/ }).click();
-  await expect(
-    page.getByLabel("Status of inquiry from Demo Visitor"),
-  ).toHaveValue("contacted");
-  await expect(
-    page.getByLabel("Status of inquiry from Second Visitor"),
-  ).toHaveValue("new");
-  expect(errors).toEqual([]);
-});
-test("admin property edit, add, delete, and public persistence", async ({
-  page,
-}) => {
-  await page.goto("/admin");
-  await page.getByRole("button", { name: "Properties", exact: true }).click();
-  await page
-    .getByRole("button", { name: "Edit The Palm House", exact: true })
-    .click();
-  await page.getByLabel("Monthly rent · VND").fill("99000000");
-  await page.getByRole("button", { name: "Save property" }).click();
-  await page
-    .getByLabel("Status of The Palm House", { exact: true })
-    .selectOption("pending");
-  await page.goto("/en/properties/the-palm-house");
-  await expect(page.locator(".detail-rent")).toContainText("99,000,000");
-  await expect(page.locator(".detail-rent")).toContainText("Pending");
-  await page.goto("/admin");
-  await page.getByRole("button", { name: "Properties", exact: true }).click();
-  await page.getByRole("button", { name: "Add property" }).click();
-  await page.getByLabel("Property name · EN").fill("Test Courtyard");
-  await page
-    .getByLabel("Description · EN")
-    .fill(
-      "An airy courtyard home with warm natural materials and a private garden.",
-    );
-  await page.getByLabel("URL slug").fill("test-courtyard");
-  await page.getByRole("button", { name: "Save property" }).click();
-  await expect(page.getByRole("dialog")).not.toBeVisible();
-  await expect(
-    page.locator(".admin-property-cell").filter({ hasText: "Test Courtyard" }),
-  ).toBeVisible();
-  await page.goto("/en/properties/test-courtyard");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Test Courtyard",
+  const inquiries = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("maison-demo-v1")!).inquiries,
   );
-  await page.reload();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Test Courtyard",
+  expect(inquiries).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: "Demo Visitor",
+        propertyId: "MSN-001",
+        email: "visitor@example.com",
+        status: "new",
+      }),
+      expect.objectContaining({
+        name: "Second Visitor",
+        email: "visitor@example.com",
+        status: "new",
+      }),
+    ]),
   );
-  await page.goto("/admin");
-  await page.getByRole("button", { name: "Properties", exact: true }).click();
-  await page.getByRole("button", { name: "Delete Test Courtyard" }).click();
-  await page.getByRole("button", { name: "Confirm", exact: true }).click();
-  await expect(
-    page.locator(".admin-property-cell").filter({ hasText: "Test Courtyard" }),
-  ).toHaveCount(0);
+  expect(inquiries).toHaveLength(2);
 });
+
 test("gallery navigation, fullscreen Escape, and mobile menu/filter interactions", async ({
   page,
 }) => {
@@ -250,7 +192,7 @@ test("gallery navigation, fullscreen Escape, and mobile menu/filter interactions
   await page.getByRole("button", { name: "Open navigation" }).click();
   await page
     .getByRole("dialog")
-    .getByRole("link", { name: /The collection/ })
+    .getByRole("link", { name: /Properties/ })
     .click();
   await expect(page).toHaveURL(/\/en\/properties$/);
   await page.getByRole("button", { name: "Filters", exact: true }).click();
@@ -283,7 +225,6 @@ test("desktop and mobile visual artifacts, all listing and gallery assets load",
     ".intro",
     ".categories",
     ".featured",
-    ".care",
     ".team",
     ".testimonials",
   ]) {

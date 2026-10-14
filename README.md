@@ -7,11 +7,11 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000/en. Locale routes are `/en`, `/vi`, `/ru`, `/ko`, and `/zh`. Administration is at `/admin` (deliberately unauthenticated demo mode).
+Open http://localhost:3000/en. Locale routes are `/en`, `/vi`, `/ru`, `/ko`, and `/zh`. The public experience contains only home, properties, property detail, and contact. The former `/admin` demo route is no longer exposed.
 
-Features: 12 localized homes; keyword, type, location, bedroom, and price filters; sorting; grid/list layouts; touch and fullscreen galleries; React Hook Form/Zod inquiries; browser-persisted property CRUD and inquiry statuses; localized UI; mobile menu and filter drawer; reduced-motion support; Lenis smooth scrolling; Motion reveals; GSAP signature scene.
+Features: 12 localized homes; keyword, type, location, bedroom, and price filters; sorting; grid/list layouts; touch and fullscreen galleries; React Hook Form/Zod inquiries; browser-persisted inquiries; localized UI; mobile menu and filter drawer; reduced-motion support; Lenis smooth scrolling; Motion reveals; GSAP signature scene.
 
-The refinement preserves the original cream palette, photography, and editorial sections. It adds readable interface typography, a consistent spacing scale, transparent-to-solid navigation, a full-screen mobile menu, keyboard-accessible animated dropdowns, removable filter chips, accent-insensitive search, masked headings and image reveals, desktop parallax, and clearer contact and viewing actions. Mobile motion stays lightweight, with reduced-motion preferences respected.
+The refinement preserves the original cream palette, photography, and working animations. Shared olive text tokens and responsive type scales balance display headings, property titles and prices, navigation, forms, metadata, and footer text. Home, Properties, and Contact are the only primary navigation items. The redundant services section and public admin entry point have been removed. It adds readable interface typography, a consistent spacing scale, transparent-to-solid navigation, a full-screen mobile menu, keyboard-accessible animated dropdowns, removable filter chips, accent-insensitive search, masked headings and image reveals, desktop parallax, and clearer contact and viewing actions. Mobile motion stays lightweight, with reduced-motion preferences respected.
 
 ## Architecture
 
@@ -21,9 +21,9 @@ The refinement preserves the original cream palette, photography, and editorial 
 - `src/lib/mock-service.ts`: centralized data boundary; replace its browser persistence with backend calls when integrating a real service.
 - `src/components`: public experience, forms, galleries, motion, and administration.
 
-`maison-demo-v1` in localStorage holds both properties and inquiries. Edits update public pages immediately and persist across reloads and same-origin browser tabs. Restore the original demo from the admin overview. Failed storage writes are reported as failures. No information is sent to a company. This is not a production authentication system.
+`maison-demo-v1` in localStorage holds both properties and inquiries. Records persist across reloads and same-origin browser tabs. The data service and administration component remain available for future authenticated integration, but have no public administration route. Failed storage writes are reported as failures. No information is sent to a company. This is not a production authentication system.
 
-The admin editor supports all five locale fields. Blank translations for newly created content fall back to the English text; original data includes meaningful translations in every locale. The public interface is translated; the separate demo management interface is English.
+Original property data and the public interface include all five languages. The serif/sans pairing uses self-hosted multilingual fonts and system sans fallbacks.
 
 ## Verification
 
@@ -36,9 +36,9 @@ npm run test:e2e
 
 Browser tests use Playwright and the local dev server. Install its Chromium browser with `npx playwright install chromium` if necessary. The dev server must be running for the tests.
 
-The suite contains 15 cases across desktop Chromium and touch-emulated Pixel 7 / iPad Mini layouts. It covers all five languages, filters and sorting, locale-preserved navigation, form validation, storage failure handling, persistent inquiries, admin CRUD, gallery controls and swipes, image loading, and GSAP pin cleanup. Normal-motion checks cover masked reveals, navigation colors, keyboard dropdown selection, filter chips, card hover, and 390/430-pixel fullscreen gallery positioning. The final suite was also run against the production server.
+The suite covers desktop Chromium and touch-emulated Pixel 7 / iPad Mini layouts: all five languages across every public page type, filters and sorting, combined price bounds and reload persistence, locale-preserved navigation, form validation and browser persistence, storage failure handling, gallery controls and swipes, image loading, and GSAP pin cleanup. It also verifies navigation scope and 404 responses for retired routes.
 
-Before/after visual reviews of the homepage, collection, residence, contact, and admin pages are in `docs/visual-review/`. Each review covers 1440, 768, 430, and 390-pixel widths. To regenerate screenshots against a running server, set `TEST_BASE_URL` and run `node scripts/visual-review.mjs after`. See `docs/verification.md` for the final checks and demo limitations.
+Final olive refinement screenshots for all four page types at 1440, 768, 430, and 390-pixel widths are in `docs/visual-review/olive/`. Regenerate them against a running server with `TEST_BASE_URL` and `node scripts/visual-review.mjs olive`. See `docs/verification.md` for checks and demo limitations.
 
 To test a production server on another port, set `TEST_BASE_URL` before running the suite. Run build and TypeScript checks sequentially because Next.js regenerates route types during the build.
 

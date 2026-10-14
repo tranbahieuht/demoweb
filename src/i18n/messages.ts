@@ -1,5 +1,7 @@
 import type { Locale } from "./routing";
 const lines: Record<string, [string, string, string, string, string]> = {
+  propertiesNav: ["Properties", "Bất động sản", "Недвижимость", "매물", "房源"],
+  contactNav: ["Contact", "Liên hệ", "Контакты", "문의", "联系"],
   exploreArea: [
     "Explore the neighborhood",
     "Khám phá khu vực",
@@ -839,11 +841,11 @@ const lines: Record<string, [string, string, string, string, string]> = {
   ],
   sending: ["Saving…", "Đang lưu…", "Сохранение…", "저장 중…", "保存中…"],
   demoForm: [
-    "Demo mode. Your inquiry is saved only in this browser and is not delivered to a company. View it in the demo administration.",
-    "Chế độ demo. Yêu cầu chỉ được lưu trong trình duyệt này, không gửi đến công ty. Xem tại trang quản trị demo.",
-    "Деморежим. Запрос сохраняется только в этом браузере и не отправляется компании. Просмотрите его в демо-панели.",
-    "데모 모드입니다. 문의는 이 브라우저에만 저장되며 회사로 전송되지 않습니다. 데모 관리자에서 확인할 수 있습니다.",
-    "演示模式：咨询仅保存在当前浏览器，不会发送给公司。可在演示管理页面查看。",
+    "Demo mode. Your inquiry is saved only in this browser and is not delivered to a company.",
+    "Chế độ demo. Yêu cầu chỉ được lưu trong trình duyệt này và không được gửi đến công ty.",
+    "Деморежим. Заявка сохраняется только в этом браузере и не отправляется компании.",
+    "데모 모드입니다. 문의는 이 브라우저에만 저장되며 회사로 전송되지 않습니다.",
+    "演示模式。咨询仅保存在此浏览器中，不会发送给公司。",
   ],
   success: [
     "Your next chapter is one step closer.",

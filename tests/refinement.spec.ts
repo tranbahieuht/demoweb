@@ -1,4 +1,110 @@
 import { test, expect } from "@playwright/test";
+test("public navigation stays within scope and retired routes return 404", async ({
+  page,
+}) => {
+  await page.goto("/en/contact");
+  const navigation = page.locator(".desktop-nav");
+  await expect(navigation.getByRole("link")).toHaveText([
+    "Home",
+    "Properties",
+    "Contact",
+  ]);
+  await expect(
+    navigation.getByRole("link", { name: "Contact", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  await expect(
+    page.locator(
+      ".site-footer a[href*='admin'], .site-footer a[href*='#people'], .site-footer a[href*='#philosophy']",
+    ),
+  ).toHaveCount(0);
+  for (const path of [
+    "/admin",
+    "/en/admin",
+    "/en/philosophy",
+    "/en/people",
+    "/en/journal",
+    "/en/blog",
+  ]) {
+    const response = await page.goto(path);
+    expect(response?.status(), path).toBe(404);
+  }
+});
+
+test("all four page types fit desktop and mobile in every language", async ({
+  page,
+}) => {
+  test.setTimeout(180000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const locale of ["en", "vi", "ru", "ko", "zh"]) {
+      for (const path of [
+        "",
+        "/properties",
+        "/properties/the-palm-house",
+        "/contact",
+      ]) {
+        await page.goto(`/${locale}${path}`);
+        await page.evaluate(() => document.fonts.ready);
+        await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+        await expect(page.locator("html")).toHaveAttribute("lang", locale);
+        if (path === "/contact" || path.includes("the-palm-house")) {
+          const notices: Record<string, string> = {
+            en: "Demo mode.",
+            vi: "Chế độ demo.",
+            ru: "Деморежим.",
+            ko: "데모 모드입니다.",
+            zh: "演示模式。",
+          };
+          await expect(page.locator(".form-demo-note")).toContainText(
+            notices[locale],
+          );
+        }
+        const dimensions = await page.evaluate(() => {
+          const heading = document.querySelector("h1")!;
+          return {
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            headingSize: parseFloat(getComputedStyle(heading).fontSize),
+            bodyColor: getComputedStyle(document.body).color,
+            background: getComputedStyle(document.body).backgroundColor,
+          };
+        });
+        expect(dimensions.overflow, `${locale}${path} at ${width}px`).toBe(
+          false,
+        );
+        expect(dimensions.headingSize).toBeLessThanOrEqual(
+          width === 390 ? 54 : 78,
+        );
+        expect(dimensions.bodyColor).toBe("rgb(95, 102, 80)");
+        expect(dimensions.background).toBe("rgb(245, 240, 230)");
+      }
+    }
+  }
+  expect(errors).toEqual([]);
+});
+
+test("minimum and maximum rent combine and descending sort respects them", async ({
+  page,
+}) => {
+  await page.goto("/en/properties");
+  const filters = page.locator(".desktop-filters");
+  await filters.getByLabel("Minimum rent (VND)").fill("60000000");
+  await filters.getByLabel("Maximum rent (VND)").fill("80000000");
+  await expect(page.locator(".property-card")).toHaveCount(2);
+  await page.getByRole("combobox", { name: "Sort homes" }).click();
+  await page.getByRole("option", { name: /high to low/i }).click();
+  await expect(page.locator(".property-card").first()).toContainText(
+    "Serene Villa",
+  );
+  await page.reload();
+  await expect(page.locator(".property-card")).toHaveCount(2);
+  await expect(page.locator(".property-card").first()).toContainText(
+    "Serene Villa",
+  );
+});
+
 test("transparent navigation, masked headings and image reveals work during normal scrolling", async ({
   page,
 }) => {
@@ -43,7 +149,7 @@ test("transparent navigation, masked headings and image reveals work during norm
     .toBe(0);
   await page
     .locator(".site-header")
-    .getByRole("link", { name: "The collection", exact: true })
+    .getByRole("link", { name: "Properties", exact: true })
     .click();
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
   await expect(page.locator(".site-header")).toHaveCSS(
