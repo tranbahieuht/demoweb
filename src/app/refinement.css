@@ -2515,10 +2515,10 @@ p {
   --text-primary: #5f6650;
   --olive-soft: #777d68;
   --olive-light: #9a9f8d;
-  --type-display: clamp(60px, 5.4vw, 78px);
-  --type-h1: clamp(52px, 4.7vw, 68px);
-  --type-h2: clamp(40px, 3.4vw, 50px);
-  --type-h3: clamp(28px, 2.2vw, 34px);
+  --type-display: clamp(56px, 4.7vw, 68px);
+  --type-h1: clamp(48px, 4.2vw, 60px);
+  --type-h2: clamp(36px, 3.2vw, 46px);
+  --type-h3: clamp(26px, 2.2vw, 32px);
   --type-body: 16px;
   --type-large: 18px;
   --type-ui: 14px;
@@ -2533,7 +2533,7 @@ h1,
 h2,
 h3 {
   color: var(--ink);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 h1 {
   font-size: var(--type-h1);
@@ -2873,9 +2873,9 @@ p {
 }
 @media (max-width: 800px) {
   :root {
-    --type-display: 60px;
-    --type-h1: 52px;
-    --type-h2: 40px;
+    --type-display: 56px;
+    --type-h1: 48px;
+    --type-h2: 38px;
     --type-h3: 28px;
   }
   .hero {
@@ -2906,10 +2906,10 @@ p {
 }
 @media (max-width: 560px) {
   :root {
-    --type-display: clamp(42px, 11.8vw, 50px);
-    --type-h1: clamp(36px, 10vw, 42px);
-    --type-h2: clamp(30px, 8.4vw, 36px);
-    --type-h3: 26px;
+    --type-display: clamp(40px, 11.3vw, 48px);
+    --type-h1: clamp(34px, 9.5vw, 40px);
+    --type-h2: clamp(28px, 8vw, 34px);
+    --type-h3: 24px;
     --type-large: 16px;
     --type-body: 16px;
   }

@@ -75,7 +75,7 @@ test("all four page types fit desktop and mobile in every language", async ({
           false,
         );
         expect(dimensions.headingSize).toBeLessThanOrEqual(
-          width === 390 ? 54 : 78,
+          width === 390 ? 48 : 68,
         );
         expect(dimensions.bodyColor).toBe("rgb(95, 102, 80)");
         expect(dimensions.background).toBe("rgb(245, 240, 230)");
